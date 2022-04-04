@@ -8,7 +8,6 @@ STORAGE_CONN = "DefaultEndpointsProtocol=https;AccountName=chatbotstoreaccount;A
 
 async def on_event(partition_context, event):
     # Print the event data.
-    # print("event send with partition number : " + str(partition_context.partition_id))
     print("{}".format(event.body_as_str(encoding="UTF-8")))
 
     # Update the checkpoint so that the program doesn't read the events
@@ -29,18 +28,17 @@ async def receive_data(
     )
 
     # Create a consumer client for the event hub.
-    client = EventHubConsumerClient.from_connection_string(
+    consumer = EventHubConsumerClient.from_connection_string(
         connect_str,
         consumer_group=consumer,
         eventhub_name=eventhub,
         checkpoint_store=checkpoint_store,
     )
-    async with client:
-        # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
-        await client.receive(on_event=on_event, starting_position="-1")
+    async with consumer:
+        # Call the receive method by reading from the beginning of the partition
+        await consumer.receive_batch(on_event_batch=on_event, starting_position="-1")
 
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    # Run the main method.
     loop.run_until_complete(receive_data())

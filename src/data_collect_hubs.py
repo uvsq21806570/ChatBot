@@ -38,12 +38,25 @@ def pollution_data(location, start_time, end_time=NOW):
 
 
 def collect_pollution_data(delta):
-    locs = ["Versailles", "Nice", "Brest", "Bayonne", "Strasbourg", "Lille"]
-    collected_data = []
-    for i in range(len(locs)):
-        loc_data = pollution_data(location=locs[i], start_time=NOW - timedelta(delta))
-        collected_data.append(loc_data)
-    return collected_data
+    return [
+        pollution_data("Brest", NOW - timedelta(delta / 3)),
+        pollution_data("Marseille", NOW - timedelta(delta / 3)),
+        pollution_data("Versailles", NOW - timedelta(delta / 3)),
+        pollution_data("Brest", NOW - timedelta(delta / 3 * 2), NOW - timedelta(delta / 3)),
+        pollution_data("Marseille", NOW - timedelta(delta / 3 * 2), NOW - timedelta(delta / 3)),
+        pollution_data("Versailles", NOW - timedelta(delta / 3 * 2), NOW - timedelta(delta / 3)),
+        pollution_data("Brest", NOW - timedelta(delta), NOW - timedelta(delta / 3 * 2)),
+        pollution_data("Marseille", NOW - timedelta(delta), NOW - timedelta(delta / 3 * 2)),
+        pollution_data("Versailles", NOW - timedelta(delta), NOW - timedelta(delta / 3 * 2)),
+    ]
+
+
+def collect_recent_data(delta):
+    return [
+        pollution_data("Brest", NOW - timedelta(seconds=delta)),
+        pollution_data("Marseille", NOW - timedelta(seconds=delta)),
+        pollution_data("Versailles", NOW - timedelta(seconds=delta))
+    ]
 
 
 if __name__ == "__main__":
