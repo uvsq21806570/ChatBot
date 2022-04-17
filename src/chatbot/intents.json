@@ -19,7 +19,11 @@
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye"
+      ],
       "responses": [
         "See you later, thanks for visiting",
         "Have a nice day",
@@ -28,10 +32,18 @@
     },
     {
       "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thank's a lot!"
+      ],
+      "responses": [
+        "Happy to help!",
+        "Any time!",
+        "My pleasure"
+      ]
     },
-   
     {
       "tag": "funny",
       "patterns": [
@@ -42,6 +54,132 @@
       "responses": [
         "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
         "What did the buffalo say when his son left for college? Bison."
+      ]
+    },
+    {
+      "tag": "recent_news",
+      "patterns": [
+        "Quelle est la pollution des dernières minutes en France ?",
+        "Quelle est la qualité de l'air actuelle dans chaque ville ?",
+        "Donnez-moi le taux de pollution en direct dans toute la France."
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "loc_ranking",
+      "patterns": [
+        "Quelles sont les villes les moins polluées ?",
+        "Quelles sont les villes les plus polluées ?",
+        "Quels sont les lieux les plus pollués ?",
+        "Quels sont les lieux les moins pollués ?",
+        "Comment les villes sont-elles classées en fonction de leur niveau de pollution ?",
+        "Donne moi le classement des villes fonction de leur indice de qualité d'air ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "hour_ranking",
+      "patterns": [
+        "Quel est l'indice de qualité de l'air en fonction de l'heure de la journée ?",
+        "La qualité de l'air change-t-elle au cours de la journée ?",
+        "La qualité de l'air est-elle plus mauvaise le matin ou le soir ?",
+        "La qualité de l'air est-elle plus mauvaise pendant la journée ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "day_ranking",
+      "patterns": [
+        "Quel est l'indice de qualité de l'air en fonction du jour de la semaine ?",
+        "La qualité de l'air évolue-t-elle au cours de la semaine ?",
+        "La qualité de l'air est-elle plus mauvaise pendant le week-end ou non ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "max_pollution_hour",
+      "patterns": [
+        "A quelle heure de la journée atteint-on le pic de pollution ?",
+        "A quelle heure la pollution est-elle la plus élevée ?",
+        "A quelle heure l'air est-il très mauvais ?",
+        "À quel moment de la journée est-il dangereux de sortir en raison de la mauvaise qualité de l'air ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "min_pollution_hour",
+      "patterns": [
+        "À quel moment de la journée la qualité de l'air est-elle la meilleure ?",
+        "A quel moment de la journée est-il le moins risqué de sortir ?",
+        "A quelle heure l'air est-il bon ?",
+        "A quelle heure la pollution est-elle la plus faible ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "max_pollution_day",
+      "patterns": [
+        "Quel est le jour le plus pollué ?",
+        "Quel jour est plus pollué que les autres ?",
+        "Quel est le jour où la qualité de l'air est la plus mauvaise ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "min_pollution_day",
+      "patterns": [
+        "Quel est le jour le moins pollué ?",
+        "Quel jour est moins pollué que les autres ?",
+        "Quel jour la qualité de l'air est-elle bonne ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "wrong_place_wrong_time",
+      "patterns": [
+        "Où et quand est-il fortement déconseillé de sortir ?",
+        "Où et quand est-il très dangereux de sortir de chez soi ?",
+        "Quelles sont les coordonnées et l'heure où l'indice de qualité de l'air est mauvais ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "wrong_place_wrong_date",
+      "patterns": [
+        "Quand et où le niveau de pollution était-il très mauvais et potentiellement mortel ?",
+        "Où et quand l'indice de qualité de l'air était extrêmement élevé ?",
+        "Où et quand était-il très dangereux de quitter son domicile ?"
+      ],
+      "responses": [
+        ""
+      ]
+    },
+    {
+      "tag": "versailles_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Versailles ?",
+        "Quelle est la qualité de l'air à Versailles au cours des dernières minutes ?"
+      ],
+      "responses": [
+        ""
       ]
     }
   ]
