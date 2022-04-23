@@ -3,57 +3,50 @@
     {
       "tag": "greeting",
       "patterns": [
-        "Hi",
+        "Salut",
         "Hey",
-        "How are you",
-        "Is anyone there?",
-        "Hello",
-        "Good day"
+        "Bonjour",
+        "Bonsoir",
+        "coucou",
+        "La forme ?",
+        "dit chatbot"
       ],
       "responses": [
         "Hey :-)",
-        "Hello, thanks for visiting",
-        "Hi there, what can I do for you?",
-        "Hi there, how can I help?"
+        "Salut !",
+        "Bonjour, comment puis-je vous aider",
+        "coucou, quelle est votre demande?",
+        "hey, Comment je peux vous aider ?"
       ]
     },
     {
       "tag": "goodbye",
       "patterns": [
         "Bye",
-        "See you later",
-        "Goodbye"
+        "Salut ",
+        "au revoir",
+        "à bientot"
       ],
       "responses": [
-        "See you later, thanks for visiting",
-        "Have a nice day",
-        "Bye! Come back again soon."
+        "Au revoir !",
+        "à plus tard !",
+        "c'etait un plaisir de vous avoir aidé",
+        "à bientot !"
       ]
     },
     {
       "tag": "thanks",
       "patterns": [
-        "Thanks",
-        "Thank you",
-        "That's helpful",
-        "Thank's a lot!"
+        "Merci",
+        "Merci beaucoup !",
+        "Merci pour ton aide",
+        ""
       ],
       "responses": [
-        "Happy to help!",
-        "Any time!",
-        "My pleasure"
-      ]
-    },
-    {
-      "tag": "funny",
-      "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
-      ],
-      "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
+        "Ravi de vous avoir aidé!",
+        "je vous en prie!",
+        "Avec plaisir <3",
+        "De rien, Je reste à votre disposition !"
       ]
     },
     {
@@ -78,7 +71,6 @@
         "Donne moi le classement des villes fonction de leur indice de qualité d'air ?"
       ],
       "responses": [
-        ""
       ]
     },
     {
@@ -90,8 +82,7 @@
         "La qualité de l'air est-elle plus mauvaise pendant la journée ?"
       ],
       "responses": [
-        ""
-      ]
+           ]
     },
     {
       "tag": "day_ranking",
@@ -101,7 +92,7 @@
         "La qualité de l'air est-elle plus mauvaise pendant le week-end ou non ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -113,7 +104,7 @@
         "À quel moment de la journée est-il dangereux de sortir en raison de la mauvaise qualité de l'air ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -125,7 +116,7 @@
         "A quelle heure la pollution est-elle la plus faible ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -136,7 +127,7 @@
         "Quel est le jour où la qualité de l'air est la plus mauvaise ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -147,7 +138,7 @@
         "Quel jour la qualité de l'air est-elle bonne ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -158,7 +149,7 @@
         "Quelles sont les coordonnées et l'heure où l'indice de qualité de l'air est mauvais ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -169,7 +160,7 @@
         "Où et quand était-il très dangereux de quitter son domicile ?"
       ],
       "responses": [
-        ""
+        
       ]
     },
     {
@@ -179,8 +170,61 @@
         "Quelle est la qualité de l'air à Versailles au cours des dernières minutes ?"
       ],
       "responses": [
-        ""
+        
+      ]
+    },
+    {
+      "tag": "lille_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Lille ?",
+        "Quelle est la qualité de l'air à Lille au cours des dernières minutes ?"
+      ],
+      "responses": [
+        
+      ]
+    },
+    {
+      "tag": "nice_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Nice ?",
+        "Quelle est la qualité de l'air à Nice au cours des dernières minutes ?"
+      ],
+      "responses": [
+        
+      ]
+    },
+    {
+      "tag": "brest_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Brest ?",
+        "Quelle est la qualité de l'air à Brest au cours des dernières minutes ?"
+      ],
+      "responses": [
+        
+      ]
+    },
+    {
+      "tag": "bayonne_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Bayonne ?",
+        "Quelle est la qualité de l'air à Bayonne au cours des dernières minutes ?"
+      ],
+      "responses": [
+        
+      ]
+    },
+    {
+      "tag": "strasbourg_current_pollution",
+      "patterns": [
+        "Quelle est la pollution actuelle à Strasbourg ?",
+        "Quelle est la qualité de l'air à Strasbourg au cours des dernières minutes ?"
+      ],
+      "responses": [
+        
       ]
     }
+
+    
+
   ]
 }

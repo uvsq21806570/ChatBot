@@ -140,62 +140,57 @@ def versailles_current_pollution(cursor) :
     return response
 
 def lille_current_pollution(cursor) :
+    response = ""
     request = "SELECT * FROM Pollution WHERE loc = 'Lille' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        current_data(row)
+        response += current_data(row)
         row = cursor.fetchone()
+    return response
 
 
 def nice_current_pollution(cursor) :
+    response = ""
     request = "SELECT * FROM Pollution WHERE loc = 'Nice' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        current_data(row)
+        response += current_data(row)
         row = cursor.fetchone()
+    return response
 
 
 def brest_current_pollution(cursor) :
+    response = ""
     request = "SELECT * FROM Pollution WHERE loc = 'Brest' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        current_data(row)
+        response += current_data(row)
         row = cursor.fetchone()
+    return response
 
 
 def bayonne_current_pollution(cursor) :
+    response = ""
     request = "SELECT * FROM Pollution WHERE loc = 'Bayonne' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
+        response += current_data(row)
         current_data(row)
         row = cursor.fetchone()
+    return response
 
 
 def strasbourg_current_pollution(cursor) :
+    response = ""
     request = "SELECT * FROM Pollution WHERE loc = 'Strasbourg' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        current_data(row)
+        response += current_data(row)
         row = cursor.fetchone()
+    return response
 
-
-if __name__ == "__main__":
-    with pyodbc.connect(
-        "DRIVER="
-        + driver
-        + ";SERVER=tcp:"
-        + server
-        + ";PORT=1433;DATABASE="
-        + database
-        + ";UID="
-        + username
-        + ";PWD="
-        + password
-    ) as conn:
-        with conn.cursor() as cursor:
-            print(wrong_place_wrong_time(cursor))
