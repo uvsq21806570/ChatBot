@@ -1,45 +1,44 @@
 import numpy as np
 import nltk
-nltk.download('punkt')
+
+nltk.download("punkt")
 from nltk.stem.porter import PorterStemmer
+
 stemmer = PorterStemmer()
+
 
 def tokenize(sentence):
     """
-    split sentence into array of words/tokens
-    a token can be a word or punctuation character, or number
+    Takes as parameter a string corresponding to a sentence and returns a list of words,
+    numbers and other punctuation characters of this sentence.
     """
-    #decouper mot par mots
     return nltk.word_tokenize(sentence)
 
 
-def stem(word):
+def stem_and_lower(word):
     """
-    stemming = find the root form of the word
-    examples:
-    words = ["organize", "organizes", "organizing"]
-    words = [stem(w) for w in words]
-    -> ["organ", "organ", "organ"]
+    Returns the root of a word and lower all his letters.
+    This allows to gather words that have the same root.
+    For example : ['Pollution', 'Polluer', 'Polluante']
+    -> ['pollut', 'polluer', 'polluant']
     """
-    #regrouper les mots ayant la même racine synthaxique
     return stemmer.stem(word.lower())
 
 
 def bag_of_words(tokenized_sentence, words):
     """
-    return bag of words array:
-    1 for each known word that exists in the sentence, 0 otherwise
+    Returns a vector of occurrences of a phrase separated into tokens compared to a list of
+    single words.1 for each known word that exists in the sentence, 0 otherwise
     example:
-    sentence = ["hello", "how", "are", "you"]
-    words = ["hi", "hello", "I", "you", "bye", "thank", "cool"]
-    bog   = [  0 ,    1 ,    0 ,   1 ,    0 ,    0 ,      0]
+    sentence = ["quelle", "est", "la", "pollution", "en", "france"]
+    words = ["pollution", "qualité", "france", "air", "dangereux", "bonjour", "merci", "salut"]
+    > [1 , 0, 1, 0, 0, 0, 0, 0]
     """
-    # stem each word
-    sentence_words = [stem(word) for word in tokenized_sentence]
-    # initialize bag with 0 for each word
-    bag = np.zeros(len(words), dtype=np.float32)
-    for idx, w in enumerate(words):
-        if w in sentence_words: 
-            bag[idx] = 1
-
+    # stemming each word
+    sentence_words = [stem_and_lower(word) for word in tokenized_sentence]
+    # initializing bag with 0 for each word
+    bag = np.zeros(len(words), dtype=np.int32)
+    for i, word in enumerate(words):
+        if word in sentence_words:
+            bag[i] = 1
     return bag
