@@ -1,13 +1,5 @@
-from calendar import weekday
 import calendar
 import datetime as dt
-import pyodbc
-
-server = "pollution-data.database.windows.net"
-database = "AirPollutionDB"
-username = "Paco"
-password = "uvsq21806570Tostaky78_"
-driver = "{ODBC Driver 18 for SQL Server}"
 
 NOW = "DATEDIFF(second, '19700101', sysutcdatetime())"
 HOUR = "DATEPART(hour, (DATEADD(second, convert(INT, timestamp), '1970-01-01')))"

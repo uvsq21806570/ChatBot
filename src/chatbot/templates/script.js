@@ -6,7 +6,6 @@ const botname = "PolluBot";
 const username = "You";
 
 function appendMsg(name, profile, text) {
-    //   Simple solution for small apps
     const msgHTML = `
         <div class="msg ${profile}">
             <div class="bubble ${profile}">
@@ -42,6 +41,9 @@ function botResponse(userMessage) {
     }
 
     appendMsg(botname, 'bot', botMessage);
+    /*$.get("/get").done(function(data) {
+        appendMsg(botname, 'bot', data);
+    })*/
 }
 
 document.onkeypress = keyPress;

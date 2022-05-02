@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <title>PolluBot</title>
-    <link rel="icon" href="../public/logo.png">
+    <link rel="icon" href="../../../public/logo.png">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
     <div class="header">
         <div class="uvsq">
-            <img src="../public/uvsq.png">
+            <img src="{{url_for('static', filename='uvsq.png')}}" />
         </div>
         <center>
             <div class="title">
@@ -19,7 +19,7 @@
             </div>
         </center>
         <div class="logo">
-            <img src="../public/logo.png">
+            <img src="{{url_for('static', filename='logo.png')}}" />
         </div>
     </div>
     <main class="chat">

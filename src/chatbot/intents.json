@@ -3,192 +3,191 @@
     {
       "tag": "greeting",
       "patterns": [
-        "Salut",
+        "Hi",
         "Hey",
-        "Bonjour",
-        "Bonsoir",
-        "coucou",
-        "La forme ?",
-        "dit chatbot"
+        "Hello",
+        "Good evening",
+        "Hello There"
       ],
       "responses": [
         "Hey :-)",
-        "Salut !",
-        "Bonjour, comment puis-je vous aider",
-        "coucou, quelle est votre demande?",
-        "hey, Comment je peux vous aider ?"
+        "Hello !",
+        "Hello, how can i help you ?",
+        "Hi, what do you want to ask me ?",
+        "Hey, how can i help you ?"
       ]
     },
     {
       "tag": "goodbye",
       "patterns": [
         "Bye",
-        "Salut ",
-        "au revoir",
-        "à bientot"
+        "See you later ",
+        "Goodbye",
+        "See you soon"
       ],
       "responses": [
-        "Au revoir !",
-        "à plus tard !",
-        "c'etait un plaisir de vous avoir aidé",
-        "à bientot !"
+        "Goodbye !",
+        "See you later !",
+        "It was a pleasure helping you",
+        "See you soon !"
       ]
     },
     {
       "tag": "thanks",
       "patterns": [
-        "Merci",
-        "Merci beaucoup !",
-        "Merci pour ton aide"
+        "Thank you",
+        "Thanks",
+        "Thank you very much !",
+        "Thanks for your help"
       ],
       "responses": [
-        "Ravi de vous avoir aidé!",
-        "je vous en prie!",
-        "Avec plaisir <3",
-        "De rien, Je reste à votre disposition !"
+        "Your welcome",
+        "Glad to have helped you!",
+        "With pleasure <3",
+        "You're welcome, I remain at your disposal!"
       ]
     },
     {
       "tag": "recent_news",
       "patterns": [
-        "Quelle est la pollution des dernières minutes en France ?",
-        "Quelle est la qualité de l'air actuelle dans chaque ville ?",
-        "Donnez-moi le taux de pollution en direct dans toute la France."
+        "What is the pollution of the last minutes in France?",
+        "What is the current air quality in each city?",
+        "Give me the live pollution rate across France."
       ],
       "responses": []
     },
     {
       "tag": "loc_ranking",
       "patterns": [
-        "Quelles sont les villes les moins polluées ?",
-        "Quelles sont les villes les plus polluées ?",
-        "Quels sont les lieux les plus pollués ?",
-        "Quels sont les lieux les moins pollués ?",
-        "Comment les villes sont-elles classées en fonction de leur niveau de pollution ?",
-        "Donne moi le classement des villes fonction de leur indice de qualité d'air ?"
+        "Which are the least polluted cities?",
+        "Which are the most polluted cities?",
+        "Which are the most polluted places?",
+        "Which are the least polluted places?",
+        "How are cities ranked according to their pollution level?",
+        "Give me the ranking of cities according to their air quality index?"
       ],
       "responses": []
     },
     {
       "tag": "hour_ranking",
       "patterns": [
-        "Quel est l'indice de qualité de l'air en fonction de l'heure de la journée ?",
-        "La qualité de l'air change-t-elle au cours de la journée ?",
-        "La qualité de l'air est-elle plus mauvaise le matin ou le soir ?",
-        "La qualité de l'air est-elle plus mauvaise pendant la journée ?"
+        "What is the air quality index by time of day?",
+        "Does the air quality change during the day?",
+        "Is the air quality worse in the morning or evening?",
+        "Is the air quality worse during the day?"
       ],
       "responses": []
     },
     {
       "tag": "day_ranking",
       "patterns": [
-        "Quel est l'indice de qualité de l'air en fonction du jour de la semaine ?",
-        "La qualité de l'air évolue-t-elle au cours de la semaine ?",
-        "La qualité de l'air est-elle plus mauvaise pendant le week-end ou non ?"
+        "What is the air quality index based on the day of the week?",
+        "Does the air quality change during the week?",
+        "Is the air quality worse on the weekend or not?"
       ],
       "responses": []
     },
     {
       "tag": "max_pollution_hour",
       "patterns": [
-        "A quelle heure de la journée atteint-on le pic de pollution ?",
-        "A quelle heure la pollution est-elle la plus élevée ?",
-        "A quelle heure l'air est-il très mauvais ?",
-        "À quel moment de la journée est-il dangereux de sortir en raison de la mauvaise qualité de l'air ?"
+        "What time of day do we reach peak pollution?",
+        "What time is the pollution highest?",
+        "What time is the air very bad?",
+        "What time of day is it dangerous to go outside because of poor air quality?"
       ],
       "responses": []
     },
     {
       "tag": "min_pollution_hour",
       "patterns": [
-        "À quel moment de la journée la qualité de l'air est-elle la meilleure ?",
-        "A quel moment de la journée est-il le moins risqué de sortir ?",
-        "A quelle heure l'air est-il bon ?",
-        "A quelle heure la pollution est-elle la plus faible ?"
+        "What time of day is the best air quality?",
+        "What time of day is it least risky to go outside?",
+        "What time is the air good?",
+        "What time is the pollution the lowest?"
       ],
       "responses": []
     },
     {
       "tag": "max_pollution_day",
       "patterns": [
-        "Quel est le jour le plus pollué ?",
-        "Quel jour est plus pollué que les autres ?",
-        "Quel est le jour où la qualité de l'air est la plus mauvaise ?"
+        "Which day is the most polluted?",
+        "Which day is more polluted than the others?",
+        "Which day has the worst air quality?"
       ],
       "responses": []
     },
     {
       "tag": "min_pollution_day",
       "patterns": [
-        "Quel est le jour le moins pollué ?",
-        "Quel jour est moins pollué que les autres ?",
-        "Quel jour la qualité de l'air est-elle bonne ?"
+        "Which day is less polluted?",
+        "Which day is less polluted than the others?",
+        "Which day is the air quality good?"
       ],
       "responses": []
     },
     {
       "tag": "wrong_place_wrong_time",
       "patterns": [
-        "Où et quand est-il fortement déconseillé de sortir ?",
-        "Où et quand est-il très dangereux de sortir de chez soi ?",
-        "Quelles sont les coordonnées et l'heure où l'indice de qualité de l'air est mauvais ?"
+        "Where and when is it highly inadvisable to go out?",
+        "Where and when is it very dangerous to leave your home?",
+        "What are the coordinates and time of day when the air quality index is poor?"
       ],
       "responses": []
     },
     {
       "tag": "wrong_place_wrong_date",
       "patterns": [
-        "Quand et où le niveau de pollution était-il très mauvais et potentiellement mortel ?",
-        "Où et quand l'indice de qualité de l'air était extrêmement élevé ?",
-        "Où et quand était-il très dangereux de quitter son domicile ?"
+        "When and where was the pollution level very bad and potentially deadly?",
+        "Where and when was the air quality index extremely high?",
+        "Where and when was it very dangerous to leave your home?"
       ],
       "responses": []
     },
     {
       "tag": "versailles_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Versailles ?",
-        "Quelle est la qualité de l'air à Versailles au cours des dernières minutes ?"
+        "What is the current pollution in Versailles?",
+        "What is the air quality in Versailles in the last few minutes?"
       ],
       "responses": []
     },
     {
       "tag": "lille_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Lille ?",
-        "Quelle est la qualité de l'air à Lille au cours des dernières minutes ?"
+        "What is the current pollution in Lille?",
+        "What is the air quality in Lille in the last few minutes?"
       ],
       "responses": []
     },
     {
       "tag": "nice_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Nice ?",
-        "Quelle est la qualité de l'air à Nice au cours des dernières minutes ?"
+        "What is the current pollution in Nice?",
+        "What is the air quality in Nice in the last few minutes?"
       ],
       "responses": []
     },
     {
       "tag": "brest_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Brest ?",
-        "Quelle est la qualité de l'air à Brest au cours des dernières minutes ?"
+        "What is the current pollution in Brest?",
+        "What is the air quality in Brest in the last few minutes?"
       ],
       "responses": []
     },
     {
       "tag": "bayonne_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Bayonne ?",
-        "Quelle est la qualité de l'air à Bayonne au cours des dernières minutes ?"
+        "What is the current pollution in Bayonne?",
+        "What is the air quality in Bayonne in the last few minutes?"
       ],
       "responses": []
     },
     {
       "tag": "strasbourg_current_pollution",
       "patterns": [
-        "Quelle est la pollution actuelle à Strasbourg ?",
-        "Quelle est la qualité de l'air à Strasbourg au cours des dernières minutes ?"
+        "What is the current pollution in Strasbourg?",
+        "What is the air quality in Strasbourg in the last few minutes?"
       ],
       "responses": []
     }

@@ -1,21 +1,39 @@
-import torch
-import torch.nn as nn
+import pickle
+import tensorflow as tf
+import tflearn as tfl
+from train import train_data
 
 
-class NeuralNet(nn.Module):
-    def __init__(self, input_size, hidden_size, num_classes):
-        super(NeuralNet, self).__init__()
-        #nombre de couches du reseau de neuronnes
-        self.l1 = nn.Linear(input_size, hidden_size) #la taille d'un token(taille d'un mot),
-        self.l2 = nn.Linear(hidden_size, hidden_size) 
-        self.l3 = nn.Linear(hidden_size, num_classes)
-        self.relu = nn.ReLU()
-    
-    def forward(self, x):
-        out = self.l1(x)
-        out = self.relu(out)
-        out = self.l2(out)
-        out = self.relu(out)
-        out = self.l3(out)
-        # no activation and no softmax at the end
-        return out
+def load_data(datafile):
+    with open(datafile, "rb") as file:
+        all_words, tags, bags, tags_i = pickle.load(file)
+        return all_words, tags, bags, tags_i
+
+
+def create_model(datafile):
+
+    try:
+        all_words, tags, bags, tags_i = load_data(datafile)
+    except:
+        train_data()
+        all_words, tags, bags, tags_i = load_data(datafile)
+
+    tf.reset_default_graph()
+
+    HIDDEN_NEURONS = int((len(all_words) + len(tags)) / 2)
+
+    net = tfl.input_data(shape=[None, len(all_words)])
+    net = tfl.fully_connected(net, HIDDEN_NEURONS)
+    net = tfl.fully_connected(net, HIDDEN_NEURONS)
+    net = tfl.fully_connected(net, len(tags), activation="softmax")
+    net = tfl.regression(net)
+
+    model = tfl.DNN(net)
+
+    try:
+        model.load("data/model.tflearn")
+    except:
+        model.fit(bags, tags_i, n_epoch=50, batch_size=4, show_metric=True)
+        model.save("data/model.tflearn")
+
+    return model, all_words, tags

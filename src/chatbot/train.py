@@ -1,127 +1,44 @@
-import numpy as np
-import random
 import json
-
-import torch
-import torch.nn as nn 
-from torch.utils.data import Dataset, DataLoader
-
-from nltk_utils import bag_of_words, tokenize, stem
-from model import NeuralNet
-
-with open('intents.json', 'r') as f:
-    intents = json.load(f)
-
-all_words = []
-tags = []
-xy = []
-# loop through each sentence in our intents patterns, lire champs par champ
-for intent in intents['intents']:
-    tag = intent['tag']
-    # add to tag list
-    tags.append(tag)
-    for pattern in intent['patterns']:
-        # tokenize each word in the sentence
-        w = tokenize(pattern)
-        # add to our words list
-        all_words.extend(w)
-        # add to xy pair
-        xy.append((w, tag))
-
-# stem and lower each word
-ignore_words = ['?', '.', '!']
-all_words = [stem(w) for w in all_words if w not in ignore_words]
-# remove duplicates and sort
-all_words = sorted(set(all_words))#enlever les doublons
-tags = sorted(set(tags))#trier les mots
+import numpy as np
+import pickle
+from normalizer import IGNORE_WORDS, bag_of_words, stem_and_lower, tokenize
 
 
-# create training data
-X_train = [] 
-y_train = []
-for (pattern_sentence, tag) in xy:
-    # X: bag of words for each pattern_sentence(le mot qu'on rentre)
-    bag = bag_of_words(pattern_sentence, all_words)
-    X_train.append(bag)
-    # y: PyTorch CrossEntropyLoss needs only class labels, not one-hot
-    label = tags.index(tag)#il essaie de trouver l'indice ou se trouve le tag.
-    y_train.append(label)
-
-X_train = np.array(X_train)
-y_train = np.array(y_train)
-
-# Hyper-parameters 
-num_epochs = 1000 #nombre d'epoch
-batch_size = 8 #taille des badges
-learning_rate = 0.001 
-input_size = len(X_train[0]) #taille de chaque element en entré
-hidden_size = 8 
-output_size = len(tags) #taille des tags comme sortie
-print(input_size, output_size)
-
-class ChatDataset(Dataset):
-
-    def __init__(self):
-        self.n_samples = len(X_train)
-        self.x_data = X_train
-        self.y_data = y_train
-
-    # accéder au données en utilisant un index
-    def __getitem__(self, index):
-        return self.x_data[index], self.y_data[index]
-
-    # we can call len(dataset) to return the size
-    def __len__(self):
-        return self.n_samples
-
-dataset = ChatDataset()
-#charger toutes nos données.(batch_size = taille des badges et shuffle pour trier les données)
-train_loader = DataLoader(dataset=dataset,
-                          batch_size=batch_size,
-                          shuffle=True,
-                          num_workers=0)
-#quand on crée un tensor en l'envoie vers device,on envoie vers le gpu ou cpu 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-#
-model = NeuralNet(input_size, hidden_size, output_size).to(device)
-
-# Loss and optimizer
-criterion = nn.CrossEntropyLoss()#calcul des erreurs
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)#c'est un optimiseur pour optimiser les parameters
-
-# Train the model
-for epoch in range(num_epochs):
-    for (words, labels) in train_loader:#decompresser les mots et leurs étiquettes
-        words = words.to(device)#pour envoyer le tout sur le gpu
-        labels = labels.to(dtype=torch.long).to(device)
-        
-        # Forward pass
-        outputs = model(words) #calcul des sortie
-        # if y would be one-hot, we must apply
-        # labels = torch.max(labels, 1)[1]
-        loss = criterion(outputs, labels)#l'erreur
-        
-        # Backward and optimize
-        optimizer.zero_grad() #pour mettre à zero le gradient dans les tensors
-        loss.backward() #calculer les derivés dans chacun des tensors et on aura tout les gardients pour savoir les erruers
-        optimizer.step()#pour modifier les points
-        
-    if (epoch+1) % 100 == 0:
-        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+with open("./src/chatbot/intents.json", "r") as file:
+    intents = json.load(file)
 
 
-print(f'final loss: {loss.item():.4f}')
-#sauvegarde de certaines données comme notre model
-data = {
-"model_state": model.state_dict(),
-"input_size": input_size,
-"hidden_size": hidden_size,
-"output_size": output_size,
-"all_words": all_words,
-"tags": tags
-}
+def train_data(datafile):
+    all_words = []
+    tags = []
+    words_tags = []
+    # loop through each sentence in our intents patterns
+    for intent in intents["intents"]:
+        tag = intent["tag"]
+        tags.append(tag)
+        for pattern in intent["patterns"]:
+            words = tokenize(pattern)
+            words = [stem_and_lower(word) for word in words if word not in IGNORE_WORDS]
+            all_words.extend(words)
+            # add the pattern_tag pair to the list
+            words_tags.append((words, tag))
 
-FILE = "data.pth"
-torch.save(data, FILE) #sauvegarde dans un fichier
+    # sort and remove duplicates (by using sort)
+    all_words = sorted(list(set(all_words)))
+    tags = sorted(tags)
 
-print(f'training complete. file saved to {FILE}')
+    bags = []
+    tags_i = []
+    # create training data
+    for (pattern_sentence, tag) in words_tags:
+        bag = bag_of_words(pattern_sentence, all_words)
+        bags.append(bag)
+        tag_i = np.zeros(len(tags), dtype=np.int32)
+        tag_i[tags.index(tag)] = 1
+        tags_i.append(tag_i)
+
+    bags = np.array(bags)
+    tags_i = np.array(tags_i)
+
+    with open(datafile, "wb") as file:
+        pickle.dump((all_words, tags, bags, tags_i), file)

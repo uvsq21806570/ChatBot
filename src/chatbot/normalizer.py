@@ -4,6 +4,7 @@ import nltk
 nltk.download("punkt")
 from nltk.stem.porter import PorterStemmer
 
+IGNORE_WORDS = ["?", ".", "!", ",", ";", "..."]
 stemmer = PorterStemmer()
 
 
@@ -25,20 +26,24 @@ def stem_and_lower(word):
     return stemmer.stem(word.lower())
 
 
-def bag_of_words(tokenized_sentence, words):
+def bag_of_words(stemmed_sentence, words):
     """
     Returns a vector of occurrences of a phrase separated into tokens compared to a list of
-    single words.1 for each known word that exists in the sentence, 0 otherwise
-    example:
+    single words. 1 for each known word that exists in the sentence, 0 otherwise
+    example (without stemming):
     sentence = ["quelle", "est", "la", "pollution", "en", "france"]
     words = ["pollution", "qualité", "france", "air", "dangereux", "bonjour", "merci", "salut"]
-    > [1 , 0, 1, 0, 0, 0, 0, 0]
+    > [1, 0, 1, 0, 0, 0, 0, 0]
     """
-    # stemming each word
-    sentence_words = [stem_and_lower(word) for word in tokenized_sentence]
     # initializing bag with 0 for each word
     bag = np.zeros(len(words), dtype=np.int32)
     for i, word in enumerate(words):
-        if word in sentence_words:
+        if word in stemmed_sentence:
             bag[i] = 1
     return bag
+
+
+""" 
+print("words_length : " + str(len(all_words)) + "\ntags_length : " + str(len(tags)))
+wait(1)
+"""
