@@ -1,13 +1,12 @@
 import asyncio
 import time
+from azure_composants import *
 from azure.eventhub import EventData
 from azure.eventhub.aio import EventHubProducerClient
 from data_collect import (
     collect_pollution_data,
     location_from_coordinates,
 )
-
-CONN_STR = "Endpoint=sb://airpollution.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=c/4h7XtTWd894204YobAM7DbFbP9/DRvtlpXZ1qK3Lg="
 
 
 def json_tuple(dataset, loc, i):
@@ -36,7 +35,7 @@ async def fill_batch(producer, data_list):
 
 
 async def send_recent_data(connect_str=CONN_STR, eventhub="", update_time=1):
-    delta = update_time / 3600 / 24 #delta in days
+    delta = update_time / 3600 / 24  # delta in days
     while True:
         await asyncio.sleep(update_time)
         recent_data = collect_pollution_data(delta)
@@ -69,7 +68,7 @@ async def send_all_data(connect_str=CONN_STR, eventhub="", update_time=1):
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
-        asyncio.ensure_future(send_all_data(eventhub="data_hub", update_time=60))
+        asyncio.ensure_future(send_all_data(eventhub="dataHub", update_time=60))
         loop.run_forever()
     except KeyboardInterrupt:
         pass

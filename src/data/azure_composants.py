@@ -1,0 +1,1 @@
+CONN_STR = "Endpoint=sb://pollution.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=PPnsLz3a8NSuTbKPa08N0rczZkAviLJ6GIBo9foLMCY="

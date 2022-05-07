@@ -1,24 +1,21 @@
 import pyodbc
 import numpy as np
 import random as rd
+from azure_composants import *
 from model import create_model
 from normalizer import IGNORE_WORDS, tokenize, stem_and_lower, bag_of_words
 from query_db import *
 from train import intents
 
-server = "pollution-data.database.windows.net"
-database = "AirPollutionDB"
-username = "Paco"
-password = "uvsq21806570Tostaky78_"
 cnxn = pyodbc.connect(
     "DRIVER={ODBC Driver 18 for SQL Server};SERVER="
-    + server
+    + SERVER
     + ";DATABASE="
-    + database
+    + DATABASE
     + ";UID="
-    + username
+    + USERNAME
     + ";PWD="
-    + password
+    + PASSWORD
 )
 cursor = cnxn.cursor()
 
