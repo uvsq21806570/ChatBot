@@ -39,7 +39,9 @@ async def send_recent_data(connect_str=CONN_STR, eventhub="", update_time=1):
     while True:
         await asyncio.sleep(update_time)
         recent_data = collect_pollution_data(delta)
+        print(str((recent_data[0])["list"]))
         if str((recent_data[0])["list"]) != "[]":
+            print ('new data incoming')
             await send_data(connect_str, eventhub)
         else:
             print("...")

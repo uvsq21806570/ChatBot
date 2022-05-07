@@ -19,17 +19,8 @@ function appendMsg(name, profile, text) {
     chat.scrollTop += 500;
 }
 
-function sendMessage() {
-    const text = msg_input.value;
-    if (!text) return;
-
-    appendMsg(username, 'user', text);
-    msg_input.value = "";
-    botResponse(text);
-}
-
 function botResponse(userMessage) {
-    var botMessage = "Sorry i didn't understand what you were asking."; //the default message
+    /*var botMessage = "Sorry i didn't understand what you were asking."; //the default message
 
     if (userMessage === 'hi' || userMessage == 'hello') {
         const hi = ['hi', 'howdy', 'hello']
@@ -40,10 +31,19 @@ function botResponse(userMessage) {
         botMessage = 'My name is ' + botname;
     }
 
-    appendMsg(botname, 'bot', botMessage);
-    /*$.get("/get").done(function(data) {
+    appendMsg(botname, 'bot', botMessage);*/
+    $.get("/get", { userMessage }).done(function (data) {
         appendMsg(botname, 'bot', data);
-    })*/
+    })
+}
+
+function sendMessage() {
+    const text = msg_input.value;
+    if (!text) return;
+
+    appendMsg(username, 'user', text);
+    msg_input.value = "";
+    botResponse(text);
 }
 
 document.onkeypress = keyPress;

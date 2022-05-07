@@ -11,12 +11,13 @@ def index():
 
 
 @app.route("/get")
-def bot_response():
-    message = request.args.get("msgInput")
-    if message:
-        return bot_response(message)
+def bot_message():
+    msg = request.args.get("userMessage")
+    print("MSG : " + msg)
+    if msg:
+        return bot_response(msg)
     else:
-        return "I did not understand what you were asking ..."
+        return "Sorry i did not understand what you were asking"
 
 
 if __name__ == "__main__":

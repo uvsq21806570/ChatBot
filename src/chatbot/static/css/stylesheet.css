@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background-image: url("../../../public/polluscope.jpg");
+    background-image: url("../images/polluscope.jpg");
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 4.8fr 1fr;
