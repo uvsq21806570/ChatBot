@@ -1,4 +1,5 @@
 import json
+import os
 import numpy as np
 import pickle
 from normalizer import IGNORE_WORDS, bag_of_words, stem_and_lower, tokenize
@@ -40,5 +41,7 @@ def train_data(datafile):
     bags = np.array(bags)
     tags_i = np.array(tags_i)
 
-    with open(datafile, "wb") as file:
+    os.makedirs(os.path.dirname(datafile), exist_ok=True)
+    with open(datafile, 'wb') as file:
         pickle.dump((all_words, tags, bags, tags_i), file)
+

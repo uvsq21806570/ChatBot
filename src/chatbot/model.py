@@ -15,10 +15,8 @@ def create_model(datafile):
     try:
         all_words, tags, bags, tags_i = load_data(datafile)
     except:
-        train_data()
+        train_data(datafile)
         all_words, tags, bags, tags_i = load_data(datafile)
-
-    tf.reset_default_graph()
 
     HIDDEN_NEURONS = int((len(all_words) + len(tags)) / 2)
 
@@ -33,6 +31,7 @@ def create_model(datafile):
     try:
         model.load("data/model.tflearn")
     except:
+        model = tfl.DNN(net)
         model.fit(bags, tags_i, n_epoch=50, batch_size=4, show_metric=True)
         model.save("data/model.tflearn")
 

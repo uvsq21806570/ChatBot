@@ -13,7 +13,6 @@ def index():
 @app.route("/get")
 def bot_message():
     msg = request.args.get("userMessage")
-    print("MSG : " + msg)
     if msg:
         return bot_response(msg)
     else:
