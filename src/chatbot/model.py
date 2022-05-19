@@ -3,7 +3,7 @@ import tensorflow as tf
 import tflearn as tfl
 from train import train_data
 
-
+#retrieve data from a file
 def load_data(datafile):
     with open(datafile, "rb") as file:
         all_words, tags, bags, tags_i = pickle.load(file)
@@ -20,12 +20,14 @@ def create_model(datafile):
 
     HIDDEN_NEURONS = int((len(all_words) + len(tags)) / 2)
 
+    #creation of a neural network composed of 4 layers 
     net = tfl.input_data(shape=[None, len(all_words)])
     net = tfl.fully_connected(net, HIDDEN_NEURONS)
     net = tfl.fully_connected(net, HIDDEN_NEURONS)
     net = tfl.fully_connected(net, len(tags), activation="softmax")
     net = tfl.regression(net)
 
+    #DNN is a type of neural network
     model = tfl.DNN(net)
 
     try:
