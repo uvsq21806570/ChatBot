@@ -7,9 +7,9 @@ DAY = "DATEPART(weekday, (DATEADD(second, convert(INT, timestamp), '1970-01-01')
 
 
 def current_data(row) :
-    return (str(row[0]) + ": AQI=" + str(row[2]) + ",  CO=" + str(row[3]) + ", NO=" + str(row[4])
-        + ", NO2=" + str(row[5]) + ",  O3=" + str(row[6]) + ", SO2=" + str(row[7]) + ", NH3=" 
-        + str(row[8]) + ", PM2.5="  + str(row[9]) + ", PM10=" + str(row[10]) + "\n"
+    return (str(round(row[0],2)) + ": AQI=" + str(round(row[2],2)) + ",  CO=" + str(round(row[3],2)) + ", NO=" + str(round(row[4],2))
+        + ", NO2=" + str(round(row[5],2)) + ",  O3=" + str(round(row[6],2)) + ", SO2=" + str(round(row[7],2)) + ", NH3=" 
+        + str(round(row[8],2)) + ", PM2.5="  + str(round(row[9],2)) + ", PM10=" + str(round(row[10],2)) + "\n"
     )
     
 
@@ -27,12 +27,13 @@ def recent_news(cursor) :
 
 
 def loc_ranking(cursor) :
-    response = "AQI moyen des villes:"
+    response = "Average IQA of cities :\n"
     request = "SELECT loc, AVG(aqi) aqi FROM Pollution GROUP BY loc ORDER BY aqi DESC"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        response += "\n" + str(row[0]) + " : " + str(row[1])
+        response += "\n" +str(row[0]) + " : " + str(round(row[1],2)) + "\n"
+    
         row = cursor.fetchone()
     return response
 
@@ -42,22 +43,22 @@ def loc_ranking(cursor) :
 
  
 def hour_ranking(cursor) :
-    response = "AQI moyen en fonction du temps:"
+    response = "Average IQA as a function of time is   "  
     request = "SELECT " + HOUR + " hour, AVG(aqi) aqi FROM Pollution GROUP BY " + HOUR + " ORDER BY hour"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        response += "\n" + str(row[0]) + "h : " + str(row[1])
+        response += "\n" + str(row[0]) + "h : " + str(round(row[1],2))
         row = cursor.fetchone()
     return response
 
 def day_ranking(cursor) :
-    response = "AQI moyen en fonction du jour de la semaine:"
+    response = "Average IQA by day of week:"
     request = "SELECT " + DAY + " day, AVG(aqi) aqi FROM Pollution GROUP BY " + DAY + " ORDER BY day"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        response += "\n" + calendar.day_name[int(row[0]) - 1] + " : " + str(row[1])
+        response += "\n" + calendar.day_name[int(row[0]) - 1] + " : " + str(round(row[1],2))
         row = cursor.fetchone()
     return response
 
@@ -68,7 +69,7 @@ def max_pollution_hour(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "Le pic de pollution est souvent atteint vers " + str(row[0]) + "h avec un AQI de " + str(row[1])
+        return "The pollution peak is often reached around " + str(row[0]) + "a.p  with an IQA of :  " + str(round(row[1],2))
 
 
 def min_pollution_hour(cursor) :
@@ -77,7 +78,7 @@ def min_pollution_hour(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "La pollution est au plus faible vers " + str(row[0]) + "h avec un AQI de " + str(row[1])
+        return "Pollution is lowest around " + str(row[0]) + "h  with an IQA of :" + str(round(row[1],2))
 
 
 def max_pollution_day(cursor) :
@@ -86,7 +87,7 @@ def max_pollution_day(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "Le pic de pollution est souvent atteint le " + calendar.day_name[int(row[0]) - 1] + " avec un AQI de " + str(row[1])
+        return "The pollution peak is often reached on " + calendar.day_name[int(row[0]) - 1] + " with an IQA of : " + str(round(row[1],2))
         
 
 
@@ -96,22 +97,22 @@ def min_pollution_day(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "La pollution est au plus faible le " + calendar.day_name[int(row[0]) - 1] + " avec un AQI de " + str(row[1])
+        return "The pollution is lowest on " + calendar.day_name[int(row[0]) - 1] + "with an IQA of : " + str(round(row[1],2))
 
 
 def wrong_place_wrong_time(cursor) :
-    response = "L'indice de qualité d'air est mauvais à :"
+    response = "The air quality index is poor at :"
     request = "SELECT DISTINCT loc, " + HOUR + " hour, AVG(aqi) aqi FROM Pollution GROUP BY loc, " + HOUR + " HAVING AVG(aqi) >= 3 ORDER BY loc"
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        response += "\n" + str(row[0]) + " à " + str(row[1]) + "h : AQI=" + str(row[2])
+        response += "\n" + str(row[0]) + " à " + str(row[2]) + "h : AQI=" + str(round(row[3],2))
         row = cursor.fetchone()
     return response
 
 
 def wrong_place_wrong_date(cursor) :
-    response = "L'indice de qualité d'air était très mauvais (AQI=5) à :"
+    response = "The air quality index was very poor (AQI=5) at :"
     request = "SELECT  loc, timestamp, aqi FROM Pollution WHERE aqi = 5"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -122,7 +123,7 @@ def wrong_place_wrong_date(cursor) :
     return response
 
 def versailles_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Versailles is : "
     request = "SELECT * FROM Pollution WHERE loc = 'Versailles' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -132,7 +133,7 @@ def versailles_current_pollution(cursor) :
     return response
 
 def lille_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Lille is :"
     request = "SELECT * FROM Pollution WHERE loc = 'Lille' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -143,7 +144,7 @@ def lille_current_pollution(cursor) :
 
 
 def nice_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Nice is :"
     request = "SELECT * FROM Pollution WHERE loc = 'Nice' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -154,7 +155,7 @@ def nice_current_pollution(cursor) :
 
 
 def brest_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Brest is : "
     request = "SELECT * FROM Pollution WHERE loc = 'Brest' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -165,7 +166,7 @@ def brest_current_pollution(cursor) :
 
 
 def bayonne_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Bayonne is :"
     request = "SELECT * FROM Pollution WHERE loc = 'Bayonne' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -177,7 +178,7 @@ def bayonne_current_pollution(cursor) :
 
 
 def strasbourg_current_pollution(cursor) :
-    response = ""
+    response = "The pollution in Strasbourg is :"
     request = "SELECT * FROM Pollution WHERE loc = 'Strasbourg' AND timestamp <= " + NOW + " AND timestamp > " + NOW + " - 3600"
     cursor.execute(request)
     row = cursor.fetchone()
