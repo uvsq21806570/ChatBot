@@ -6,7 +6,7 @@ from model import create_model
 from normalizer import IGNORE_WORDS, tokenize, stem_and_lower, bag_of_words
 from query_db import *
 from train import intents
-
+#connection to database
 cnxn = pyodbc.connect(
     "DRIVER={ODBC Driver 18 for SQL Server};SERVER="
     + SERVER
@@ -19,16 +19,17 @@ cnxn = pyodbc.connect(
 )
 cursor = cnxn.cursor()
 
-
+#recovery of data from the pickle file
 model, all_words, tags = create_model("data/data.pickle")
 
-
+#function that returns the answer generate
 def bot_response(message):
     while True:
         message = tokenize(message)
         message = [
             stem_and_lower(word) for word in message if word not in IGNORE_WORDS
         ]
+        #calculation of predictions
         result = model.predict([bag_of_words(message, all_words)])
         result_i = np.argmax(result)
         tag = tags[result_i]
