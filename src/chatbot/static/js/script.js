@@ -20,18 +20,6 @@ function appendMsg(name, profile, text) {
 }
 
 function botResponse(userMessage) {
-    /*var botMessage = "Sorry i didn't understand what you were asking."; //the default message
-
-    if (userMessage === 'hi' || userMessage == 'hello') {
-        const hi = ['hi', 'howdy', 'hello']
-        botMessage = hi[Math.floor(Math.random() * (hi.length))];;
-    }
-
-    if (userMessage === 'name') {
-        botMessage = 'My name is ' + botname;
-    }
-
-    appendMsg(botname, 'bot', botMessage);*/
     $.get("/get", { userMessage }).done(function (data) {
         appendMsg(botname, 'bot', data);
     })
@@ -57,7 +45,7 @@ function keyPress(e) {
     }
 }
 
-// This function is set to run when the users brings focus to the messagebox, by clicking on it
+// Set to run when the users brings focus to the messagebox, by selecting it
 function placeHolder() {
     document.getElementById("msgInput").placeholder = "";
 }

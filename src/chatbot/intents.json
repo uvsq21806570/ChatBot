@@ -48,6 +48,30 @@
       ]
     },
     {
+      "tag": "feeling",
+      "patterns": [
+        "How you doin ?",
+        "How you feel ?",
+        "How are you ?",
+        "You feel good ?"
+      ],
+      "responses": [
+        "I'm great, i hope you are too",
+        "I am fine if you're fine",
+        "I'm feeling good today !"
+      ]
+    },
+    {
+      "tag": "measures",
+      "patterns": [
+        "What is the measure for the concentration of the molecules?",
+        "What are the components of the pollution expressed in?"
+      ],
+      "responses": [
+        "In micrograms (μg/m3)"
+      ]
+    },
+    {
       "tag": "recent_news",
       "patterns": [
         "What is the pollution of the last minutes in France?",
