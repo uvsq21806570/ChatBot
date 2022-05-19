@@ -27,7 +27,7 @@ def recent_news(cursor) :
 
 
 def loc_ranking(cursor) :
-    response = "Average IQA of cities :\n"
+    response = "Average AQI of cities :\n"
     request = "SELECT loc, AVG(aqi) aqi FROM Pollution GROUP BY loc ORDER BY aqi DESC"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -43,7 +43,7 @@ def loc_ranking(cursor) :
 
  
 def hour_ranking(cursor) :
-    response = "Average IQA as a function of time is   "  
+    response = "Average AQI as a function of time is   "  
     request = "SELECT " + HOUR + " hour, AVG(aqi) aqi FROM Pollution GROUP BY " + HOUR + " ORDER BY hour"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -53,7 +53,7 @@ def hour_ranking(cursor) :
     return response
 
 def day_ranking(cursor) :
-    response = "Average IQA by day of week:"
+    response = "Average AQI by day of week:"
     request = "SELECT " + DAY + " day, AVG(aqi) aqi FROM Pollution GROUP BY " + DAY + " ORDER BY day"
     cursor.execute(request)
     row = cursor.fetchone()
@@ -69,7 +69,7 @@ def max_pollution_hour(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "The pollution peak is often reached around " + str(row[0]) + "a.p  with an IQA of :  " + str(round(row[1],2))
+        return "The pollution peak is often reached around " + str(row[0]) + "a.p  with an AQI of :  " + str(round(row[1],2))
 
 
 def min_pollution_hour(cursor) :
@@ -78,7 +78,7 @@ def min_pollution_hour(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "Pollution is lowest around " + str(row[0]) + "h  with an IQA of :" + str(round(row[1],2))
+        return "Pollution is lowest around " + str(row[0]) + "h  with an AQI of :" + str(round(row[1],2))
 
 
 def max_pollution_day(cursor) :
@@ -87,7 +87,7 @@ def max_pollution_day(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "The pollution peak is often reached on " + calendar.day_name[int(row[0]) - 1] + " with an IQA of : " + str(round(row[1],2))
+        return "The pollution peak is often reached on " + calendar.day_name[int(row[0]) - 1] + " with an AQI of : " + str(round(row[1],2))
         
 
 
@@ -97,7 +97,7 @@ def min_pollution_day(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        return "The pollution is lowest on " + calendar.day_name[int(row[0]) - 1] + "with an IQA of : " + str(round(row[1],2))
+        return "The pollution is lowest on " + calendar.day_name[int(row[0]) - 1] + "with an AQI of : " + str(round(row[1],2))
 
 
 def wrong_place_wrong_time(cursor) :
