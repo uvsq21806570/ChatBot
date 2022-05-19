@@ -70,7 +70,7 @@ async def send_all_data(connect_str=CONN_STR, eventhub="", update_time=1):
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
-        asyncio.ensure_future(send_all_data(eventhub="dataHub", update_time=60))
+        asyncio.ensure_future(send_all_data(eventhub="datahub", update_time=60))
         loop.run_forever()
     except KeyboardInterrupt:
         pass

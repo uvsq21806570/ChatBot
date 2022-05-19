@@ -1,1 +1,1 @@
-CONN_STR = "Endpoint=sb://pollution.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=PPnsLz3a8NSuTbKPa08N0rczZkAviLJ6GIBo9foLMCY="
+CONN_STR = "Endpoint=sb://terpollution.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OHvx5Gpb46bnQw0SxdFnxbQ3s8yhr1i9374Rbkn0X0w="

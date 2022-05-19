@@ -15,7 +15,7 @@ d'y toucher.
 - Dans la barre de recherches, saisir "Event Hubs"
 - Créer espace de noms event hubs
 - Sélectionner ou créer votre groupe de ressources
-- Donner le nom 'pollution' à votre espace
+- Donner le nom 'uvsqterpollution' à votre espace
 - Sélectionner un niveau tarifiaire "de base" (car suffisant)
 - Créer et accéder à la ressource une fois la création terminée
 - Dans l'onglet des paramètres, cliquer sur 'Stratégie d'accès partagé'
@@ -39,7 +39,7 @@ d'y toucher.
 - Copier le contenu de ./queries/create_table.sql et le coller dand 'Requête 1' pour l'exécuter
 
 ## Serveur SQL Database
-- Donner le nom 'pollutionserver' à votre serveur
+- Donner le nom 'uvsq-pollution-server' à votre serveur
 - Saisir 'user' pour la connexion d'administrateur du serveur
 - Renseigner '4Za6PLL4qRCnnBx!' pour le mot de passe
 
@@ -61,8 +61,8 @@ d'y toucher.
 - Sélectionner le service 'pollutionserver' sur la page d'accueil d'Azure
 - Dans l'onglet des paramètres, sélectionner 'Azure Active Directory' puis 'Définir l'adminisatrateur'
 - Rechercher et sélectionner 'insert_db' puis enregistrer
-- Dans l'onglet 'Sécurité', selectionner 'Pare-feux et réseaux virtuels' 
-- Autoriser les services et les ressources Azure à accéder à ce serveur
+- Dans l'onglet 'Sécurité', selectionner 'Mise en réseau' 
+- Autoriser les services et les ressources Azure à accéder à ce serveur dans 'Exceptions'
 - Ajouter une adresse IP cliente (si ce n'était pas encore réalisé à (1)) puis enregistrer
 
 Enfin, retourner sur le service Stream Analytics 'insert_db' puis démarrer votre travail.
