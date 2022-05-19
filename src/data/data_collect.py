@@ -4,7 +4,6 @@ from geopy.geocoders import Nominatim
 
 
 GEOLOCATOR = Nominatim(user_agent="Your Name")
-NOW = dt.now()
 
 
 def coordinates_from_location(location):
@@ -18,7 +17,7 @@ def location_from_coordinates(coordinates):
     return (location.raw["address"])["municipality"]
 
 
-def pollution_data(location, start_time, end_time=NOW):
+def pollution_data(location, start_time, end_time):
     start_time = round(dt.timestamp(start_time))
     end_time = round(dt.timestamp(end_time))
     coordinates = coordinates_from_location(location)
@@ -41,10 +40,10 @@ def collect_pollution_data(delta):
     locs = ["Versailles", "Nice", "Brest", "Bayonne", "Strasbourg", "Lille"]
     collected_data = []
     for i in range(len(locs)):
-        loc_data = pollution_data(location=locs[i], start_time=NOW - timedelta(delta))
+        loc_data = pollution_data(location=locs[i], start_time=dt.now() - timedelta(delta), end_time=dt.now())
         collected_data.append(loc_data)
     return collected_data
 
 
 if __name__ == "__main__":
-    collected_data = collect_pollution_data()
+    collected_data = collect_pollution_data(1)
