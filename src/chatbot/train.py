@@ -12,7 +12,7 @@ with open("./src/chatbot/intents.json", "r") as file:
 def train_data(datafile):
     all_words = []
     tags = []
-    words_tags = []
+    words_tags = [] # each iteration corresponds to a pattern associated with its tag
     # loop through each sentence in our intents patterns
     for intent in intents["intents"]:
         tag = intent["tag"]

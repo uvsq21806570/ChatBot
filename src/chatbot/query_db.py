@@ -7,7 +7,7 @@ DAY = "DATEPART(weekday, (DATEADD(second, convert(INT, timestamp), '1970-01-01')
 
 
 def current_data(row) :
-    return (str(round(row[0],2)) + ": AQI=" + str(round(row[2],2)) + ",  CO=" + str(round(row[3],2)) + ", NO=" + str(round(row[4],2))
+    return (str(row[0]) + ": AQI=" + str(round(row[2],2)) + ",  CO=" + str(round(row[3],2)) + ", NO=" + str(round(row[4],2))
         + ", NO2=" + str(round(row[5],2)) + ",  O3=" + str(round(row[6],2)) + ", SO2=" + str(round(row[7],2)) + ", NH3=" 
         + str(round(row[8],2)) + ", PM2.5="  + str(round(row[9],2)) + ", PM10=" + str(round(row[10],2)) + "\n"
     )
@@ -32,18 +32,12 @@ def loc_ranking(cursor) :
     cursor.execute(request)
     row = cursor.fetchone()
     while row:
-        response += "\n" +str(row[0]) + " : " + str(round(row[1],2)) + "\n"
-    
+        response += "\n" + str(row[0]) + " : " + str(round(row[1],2)) + "\n"
         row = cursor.fetchone()
     return response
-
-
-# Ville la plus polluée
-# Ville la moins polluée
-
  
 def hour_ranking(cursor) :
-    response = "Average AQI as a function of time is   "  
+    response = "Average AQI according to the time of the day is   "  
     request = "SELECT " + HOUR + " hour, AVG(aqi) aqi FROM Pollution GROUP BY " + HOUR + " ORDER BY hour"
     cursor.execute(request)
     row = cursor.fetchone()
